@@ -11,6 +11,7 @@ class Message extends Component {
     super(props);
     this.state = { snackbaropen: false, snackbarmsg: '' };
     this.submitFileData = this.submitFileData.bind(this);
+    this.submitMessageData = this.submitMessageData.bind(this);
 }
 
   
@@ -46,6 +47,7 @@ class Message extends Component {
 
    //var ciphertext = CryptoJS.AES.encrypt(JSON.stringify("kkk"), "my-secret-key@123").toString();
     
+   console.log(event.target.message.value, "this i vl");
 
     console.log(ciphertext);
 
@@ -53,22 +55,36 @@ class Message extends Component {
       message:ciphertext
     }
 
-
-   
-
-    const responseData = await axios.post(`http://localhost:5000/message/save`, data, {
+    if((event.target.message.value == null) || (event.target.message.value == "")){
+      alert("Please Enter a Message")
+    }
+   else{
+    
+    axios.post(`http://localhost:5000/message/save`, data, {
       headers: {
         'Content-Type':'application/json',
         'x-access-token': this.props.token.id_token,
         'user_name':'chathura'
       }
-    });
-    console.log(responseData);
-    if(responseData.status == 200){
-    console.log("okkkkkkkkk")
-      // swal("Good job!", "File Uploaded Successfully!", "success");
-    }
+    }).then((result)=> {
 
+      
+    })
+   // console.log(responseData);
+   alert("Successful");
+    window.location.reload();
+    
+    // if(responseData){
+    // alert("Successful")
+    // console.log("ok")
+
+    // window.location.reload();
+    //   // swal("Good job!", "File Uploaded Successfully!", "success");
+    // }
+
+   }
+
+    
 
 
   }

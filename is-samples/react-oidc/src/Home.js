@@ -106,28 +106,30 @@ class HomeComponent extends React.Component {
                 <br />
                 {
                     isLoggedIn ?
-                        <>
-                            <br />
-                            <h2>Token Response</h2>
-                            <div className="card access-request-block">
-                                <ReactJson src={tokenResponse} collapseStringsAfterLength={50} />
-                            </div>
-                            <br />
-                            <h2>ID Token</h2>
-                            <div className="card token-request-block">
-                                <ReactJson src={idToken} collapseStringsAfterLength={50} />
-                            </div>
-                            <br/>
-                            <button className="btn btn-danger" onClick={this.handleLogoutBtnClick}>LOGOUT</button>
-                        </>
+                        // <>
+                        //     <br />
+                        //     <h2>Token Response</h2>
+                        //     <div className="card access-request-block">
+                        //         <ReactJson src={tokenResponse} collapseStringsAfterLength={50} />
+                        //     </div>
+                        //     <br />
+                        //     <h2>ID Token</h2>
+                        //     <div className="card token-request-block">
+                        //         <ReactJson src={idToken} collapseStringsAfterLength={50} />
+                        //     </div>
+                        //     <br/>
+                        //     <button className="btn btn-danger" onClick={this.handleLogoutBtnClick}>LOGOUT</button>
+                        // </>
                         
-                        // <button className="btn btn-danger" onClick={this.handleLogoutBtnClick}>LOGOUT</button>
+                        <button className="btn btn-danger" onClick={this.handleLogoutBtnClick}>LOGOUT</button>
                         :
                         <button className="btn btn-primary" onClick={this.handleLoginBtnClick}>LOGIN</button>
                 }
                 {idToken.groups === 'manager' ? 
                       <>
+                       <h3>Manager</h3>
                       <div className="row">
+                               
                                 <div className="col-md-6">
                                     <UploadFile token={tokenResponse} />
                                 </div>
@@ -136,6 +138,7 @@ class HomeComponent extends React.Component {
                                 </div>
                                
                             </div>
+                           
                             <div className="row">
                             <div className="col-md-6">
                                     <ViewMessages token={tokenResponse}/>
@@ -146,12 +149,13 @@ class HomeComponent extends React.Component {
                             
                       
                         : idToken.groups === 'staff_worker' ? 
-                   
+                        <>
+                        <h3>Worker</h3>
                         <div className="row">
                             <div className="col-md-12">
                                 <Message token={tokenResponse} />
                             </div>
-                        </div>
+                        </div></>
                         
                    : '' }
             </div>
