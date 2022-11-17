@@ -74,7 +74,7 @@ array[i] = list[i]
             <thead>
                 <tr>
                     <th>Message</th>
-                    <th>There</th>
+                    <th>Time</th>
                     
                 </tr>
             </thead>
